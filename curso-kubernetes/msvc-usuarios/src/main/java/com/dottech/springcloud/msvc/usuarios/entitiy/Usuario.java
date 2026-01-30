@@ -1,4 +1,4 @@
-package com.dottech.springcloud.msvc.usuarios.models.entitiy;
+package com.dottech.springcloud.msvc.usuarios.entitiy;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="usuarios")
@@ -15,13 +18,18 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // @NotEmpty para String, para Integer, Long y Double @NotNull
+    @NotEmpty(message="no puede ser vacio")
     private String nombre;
 
+    @NotEmpty
+    @Email(message ="formato incorrecto")
     @Column(unique = true)
     private String email;
 
+    @NotBlank
     private String password;
-    
+
     public Long getId() {
         return id;
     }

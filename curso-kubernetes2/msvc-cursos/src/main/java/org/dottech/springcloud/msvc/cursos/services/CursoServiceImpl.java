@@ -1,6 +1,8 @@
 package org.dottech.springcloud.msvc.cursos.services;
 
-import org.dottech.springcloud.msvc.cursos.entity.Curso;
+import org.dottech.springcloud.msvc.cursos.clients.UsuarioClientRest;
+import org.dottech.springcloud.msvc.cursos.models.Usuario;
+import org.dottech.springcloud.msvc.cursos.models.entity.Curso;
 import org.dottech.springcloud.msvc.cursos.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,10 @@ public class CursoServiceImpl implements CursoService {
     @Autowired
     private CursoRepository repository;
 
+    @Autowired
+    private UsuarioClientRest client;
+
+    // logica de negocios de persistencia de datos
     @Override
     @Transactional(readOnly = true)
     public List<Curso> listar() {
@@ -37,6 +43,22 @@ public class CursoServiceImpl implements CursoService {
     @Transactional
     public void eliminar(Long id) {
         repository.deleteById(id);
+    }
+
+    // logica de negocios de para usar entre microservicios
+    @Override
+    public Optional<Usuario> asignarUsuaio(Usuario usuario, Long cursoId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Usuario> crearUsuario(Usuario usuario, Long cursoId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Usuario> eliminarUsuario(Usuario usuario, Long cursoId) {
+        return Optional.empty();
     }
 }
 

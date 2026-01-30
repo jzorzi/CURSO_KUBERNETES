@@ -1,6 +1,6 @@
 package com.dottech.springcloud.msvc.usuarios.services;
 
-import com.dottech.springcloud.msvc.usuarios.models.entitiy.Usuario;
+import com.dottech.springcloud.msvc.usuarios.entitiy.Usuario;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,4 +11,6 @@ public interface UsuarioService {
     Optional<Usuario>   porId(Long id);
     Usuario             guardar(Usuario usuario);
     void                eliminar(Long id);
+
+    Optional<Usuario> porEmail(String email);
 }

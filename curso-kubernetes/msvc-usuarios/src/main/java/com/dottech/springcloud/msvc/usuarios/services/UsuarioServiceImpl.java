@@ -1,6 +1,6 @@
 package com.dottech.springcloud.msvc.usuarios.services;
 
-import com.dottech.springcloud.msvc.usuarios.models.entitiy.Usuario;
+import com.dottech.springcloud.msvc.usuarios.entitiy.Usuario;
 import com.dottech.springcloud.msvc.usuarios.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +37,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional
     public void eliminar(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Usuario> porEmail(String email) {
+        return repository.findByEmail(email);
     }
 
 }
