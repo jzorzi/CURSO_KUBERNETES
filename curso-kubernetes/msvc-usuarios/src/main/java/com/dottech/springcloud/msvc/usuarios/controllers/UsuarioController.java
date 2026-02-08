@@ -1,5 +1,6 @@
 package com.dottech.springcloud.msvc.usuarios.controllers;
 
+import com.dottech.springcloud.msvc.usuarios.clients.CursoClienteRest;
 import com.dottech.springcloud.msvc.usuarios.entitiy.Usuario;
 import com.dottech.springcloud.msvc.usuarios.services.UsuarioService;
 import jakarta.validation.Valid;
@@ -17,6 +18,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService service;
+
+    @Autowired
+    private CursoClienteRest cliente;
 
     @GetMapping
     public List<Usuario> listar() {
@@ -86,6 +90,11 @@ public class UsuarioController {
         }
         else
             return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/usuarios-por-curso")
+    public ResponseEntity<?> obtenerAlumnosPorCurso(@RequestParam List<Long> ids) {
+        return ResponseEntity.ok(service.listarPorIds(ids));
     }
 
     private static @NonNull ResponseEntity<Map<String, String>> validar(BindingResult result) {
