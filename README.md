@@ -46,6 +46,11 @@ SELECT current_database();
     }etails (size, description)
 \dt+
 
+------- MYSQL -------
+
+sudo service mysql start
+sudo service mysql stop
+sudo service mysql status
 
 ------- maven / java / dockerisar la app --------
 mvn clean package                       // (en la carpeta target se crea el snapshot jar)
